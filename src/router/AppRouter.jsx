@@ -1,8 +1,9 @@
 import { Navigate, Route, Routes } from "react-router-dom"
 import { AuthRoutes } from "../auth/routes/AuthRoutes"
 
-// import { CheckingAuth } from "../ui"
-// import { useCheckAuth } from "../hooks"
+import { CheckingAuth } from "../ui"
+import { useCheckAuth } from "../hooks"
+import { NotesRoutes } from "../notes/routes/NotesRoutes"
 
 export const AppRouter = () => {
     
@@ -17,7 +18,7 @@ export const AppRouter = () => {
 
             {
                 (status === 'authenticated')
-                    ? <Route path="/*" element={ <JournalRoutes /> } />
+                    ? <Route path="/*" element={ <NotesRoutes /> } />
                     : <Route path="/auth/*" element={ <AuthRoutes /> } />
             }
 

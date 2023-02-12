@@ -7,7 +7,7 @@ import ArchiveOutlinedIcon from '@mui/icons-material/ArchiveOutlined';
 export const SideBar = ({ drawerSize }) => {
   return (
     <Drawer
-        variant="permanent"
+        variant='permanent'
         sx={{
         width: drawerSize,
         flexShrink: 0,

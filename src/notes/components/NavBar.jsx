@@ -18,7 +18,7 @@ export const NavBar = () => {
         <Toolbar>
             <DescriptionIcon sx={{ mr: 1 }} />
             <Box>
-                <Typography variant='h6' color="inherit" noWrap>
+                <Typography variant='h6' color='inherit' noWrap>
                     NotesApp
                 </Typography>
             </Box>
@@ -26,7 +26,7 @@ export const NavBar = () => {
             <SearchBar />
 
             <IconButton 
-                color="stockWhite"
+                color='stockWhite'
                 onClick={ onLogout }
             >
                 <LogoutOutlined />

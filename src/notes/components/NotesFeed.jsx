@@ -9,63 +9,66 @@ export const NotesFeed = ({ notes }) => {
   return (
     <Container sx={{ py: 3 }} maxWidth='xxl'>
         <Grid container justifyContent='center'>
+
         <Masonry
         className='my-masonry-grid'
         columns={{ xs: 1, sm: 2, md: 3, lg: 4, xl: 5 }}
         spacing={2}
         >
-            {notes.map((note) => (
-            <Grid item key={note._id}>
-                <Card 
-                    // variant='outlined'
-                    sx={{ ':hover': { boxShadow: 4 } }}
-                >
-                <CardContent>
-                    <Typography 
-                        gutterBottom 
-                        variant='h5' 
-                        component='h2'  
-                        style={{fontSize: 16, fontWeight: 500 }}
+            {
+                notes.map((note) => (
+                <Grid item key={note._id}>
+                    <Card 
+                        // variant='outlined'
+                        sx={{ ':hover': { boxShadow: 4 } }}
                     >
-                    {note.title}
-                    </Typography>
-                    <Typography
-                        style={{fontSize: 14 }}
-                    >
-                    {note.description}
-                    </Typography>
-                </CardContent>
-                <Box 
-                    justifyContent='space-between'
-                    display='flex'
-                >
-                    <Box
+                    <CardContent>
+                        <Typography 
+                            gutterBottom 
+                            variant='h5' 
+                            component='h2'  
+                            style={{fontSize: 16, fontWeight: 500 }}
+                        >
+                        {note.title}
+                        </Typography>
+                        <Typography
+                            style={{fontSize: 14 }}
+                        >
+                        {note.description}
+                        </Typography>
+                    </CardContent>
+                    <Box 
+                        justifyContent='space-between'
                         display='flex'
-                        flexDirection='column'
-                        justifyContent='center'
-                        marginLeft='15px'
                     >
-                    <Typography 
-                        variant='caption'
-                        color='grey'
-                    >{ note.dateModify }</Typography>
+                        <Box
+                            display='flex'
+                            flexDirection='column'
+                            justifyContent='center'
+                            marginLeft='15px'
+                        >
+                        <Typography 
+                            variant='caption'
+                            color='grey'
+                        >{ note.dateModify }</Typography>
+                        </Box>
+                        <Box>
+                        <CardActions>
+                            <IconButton size='small' aria-label='delete note' color='warning '>
+                                <ArchiveOutlinedIcon />
+                            </IconButton>
+                            <IconButton size='small' aria-label='delete note' color='error'>
+                                <DeleteOutlineOutlinedIcon />
+                            </IconButton>
+                        </CardActions>
+                        </Box>
                     </Box>
-                    <Box>
-                    <CardActions>
-                        <IconButton size='small' aria-label='delete note' color='warning '>
-                            <ArchiveOutlinedIcon />
-                        </IconButton>
-                        <IconButton size='small' aria-label='delete note' color='error'>
-                            <DeleteOutlineOutlinedIcon />
-                        </IconButton>
-                    </CardActions>
-                    </Box>
-                </Box>
-                </Card>
-            </Grid>
-            ))}
-
+                    </Card>
+                </Grid>
+                ))
+            }
         </Masonry>
+        
         </Grid>
     </Container>
   )

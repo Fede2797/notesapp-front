@@ -1,24 +1,24 @@
 import { Box, Toolbar } from '@mui/material';
-import { useSelector } from 'react-redux';
-import { useSetNotesPage } from '../../hooks/useSetNotesPage';
 
 import { NewNote, NotesFeed } from '../components'
 import { NotesLayout } from '../layout/NotesLayout';
+import { useSelector } from 'react-redux';
+import { useSetNotesPage } from '../../hooks/useSetNotesPage';
 
-export const NotesPage = () => {
+export const TrashPage = () => {
 
     const { notes } = useSelector( state => state.note );
+    useSetNotesPage('DELETED');
+    
 
-    useSetNotesPage('ACTIVE');
 
     return (
         <NotesLayout>
             <Box justifyContent='center' width='100vw'>
                 <Toolbar />
-                
-                <NewNote />
 
                 <NotesFeed notes={ notes } />
+
             </Box>
         </NotesLayout>
     )

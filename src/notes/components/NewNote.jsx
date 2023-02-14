@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Box, Card, CardActions, CardContent, IconButton, TextareaAutosize } from "@mui/material";
 
 import AddCircleIcon from '@mui/icons-material/AddCircle';
@@ -5,21 +6,30 @@ import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined
 import ArchiveOutlinedIcon from '@mui/icons-material/ArchiveOutlined';
 
 export const NewNote = () => {
+
+    const [displayNewNote, setDisplayNewNote] = useState(false);
+
   return (
     <Box
         width='100%' 
         justifyContent='center'
         display='flex'
+        flexDirection='column'
         alignItems='center'
         marginTop='20px'
     >
-        <IconButton aria-label='new note' size='small' color='primary'>
-            <AddCircleIcon sx={{ fontSize: 55 }} />                        
+        <IconButton 
+            aria-label='new note' 
+            size='small' 
+            color='primary'
+            onClick={ () => setDisplayNewNote( !displayNewNote ) }
+        >
+            <AddCircleIcon sx={{ fontSize: 55 }} />
         </IconButton>
 
         <Box
             width='500px'
-            display='none'
+            display={ displayNewNote ? '' : 'none' }
         >
             <Card sx={{ ':hover': { boxShadow: 4 } }}>
             <CardContent style={{ paddingBottom: 0 }}>

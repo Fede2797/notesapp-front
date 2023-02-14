@@ -4,6 +4,7 @@ import { AppBar, Box, IconButton, Toolbar, Typography } from '@mui/material';
 import LogoutOutlined from '@mui/icons-material/LogoutOutlined';
 import DescriptionIcon from '@mui/icons-material/Description';
 import { SearchBar } from './SearchBar';
+import { startLogout } from '../../store/auth';
 
 export const NavBar = () => {
 
@@ -13,25 +14,25 @@ export const NavBar = () => {
         dispatch( startLogout() );
     }
 
-  return (
-    <AppBar position='fixed' sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
-        <Toolbar>
-            <DescriptionIcon sx={{ mr: 1 }} />
-            <Box>
-                <Typography variant='h6' color='inherit' noWrap>
-                    NotesApp
-                </Typography>
-            </Box>
-            
-            <SearchBar />
+    return (
+        <AppBar position='fixed' sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
+            <Toolbar>
+                <DescriptionIcon sx={{ mr: 1 }} />
+                <Box>
+                    <Typography variant='h6' color='inherit' noWrap>
+                        NotesApp
+                    </Typography>
+                </Box>
+                
+                <SearchBar />
 
-            <IconButton 
-                color='stockWhite'
-                onClick={ onLogout }
-            >
-                <LogoutOutlined />
-            </IconButton>
-        </Toolbar>
-    </AppBar>
-  )
+                <IconButton 
+                    color='stockWhite'
+                    onClick={ onLogout }
+                >
+                    <LogoutOutlined />
+                </IconButton>
+            </Toolbar>
+        </AppBar>
+    )
 }

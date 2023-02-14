@@ -1,4 +1,5 @@
-import { Box, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Toolbar } from '@mui/material'
+import { Box, Drawer, Link, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Toolbar } from '@mui/material';
+import { Link as RouterLink } from "react-router-dom";
 
 import DescriptionIcon from '@mui/icons-material/Description';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
@@ -17,30 +18,36 @@ export const SideBar = ({ drawerSize }) => {
         <Toolbar />
         <Box sx={{ overflow: 'auto' }}>
             <List>
-                <ListItem key='Notes' disablePadding>
-                    <ListItemButton>
-                    <ListItemIcon>
-                        <DescriptionIcon />
-                    </ListItemIcon>
-                    <ListItemText primary='Notes' />
-                    </ListItemButton>
-                </ListItem>
-                <ListItem key='Archived' disablePadding>
-                    <ListItemButton>
-                    <ListItemIcon>
-                        <ArchiveOutlinedIcon />
-                    </ListItemIcon>
-                    <ListItemText primary='Archived' />
-                    </ListItemButton>
-                </ListItem>
-                <ListItem key='Trash' disablePadding>
-                    <ListItemButton>
-                    <ListItemIcon>
-                        <DeleteOutlineOutlinedIcon />
-                    </ListItemIcon>
-                    <ListItemText primary='Trash' />
-                    </ListItemButton>
-                </ListItem>
+                <Link component={ RouterLink } color="inherit" to="/" style={{ textDecoration: 'none' }}>
+                    <ListItem key='Notes' disablePadding>
+                        <ListItemButton>
+                        <ListItemIcon>
+                            <DescriptionIcon />
+                        </ListItemIcon>
+                        <ListItemText primary='Notes' />
+                        </ListItemButton>
+                    </ListItem>
+                </Link>
+                <Link component={ RouterLink } color="inherit" to="/archived" style={{ textDecoration: 'none' }}>
+                    <ListItem key='Archived' disablePadding>
+                        <ListItemButton>
+                        <ListItemIcon>
+                            <ArchiveOutlinedIcon />
+                        </ListItemIcon>
+                        <ListItemText primary='Archived' />
+                        </ListItemButton>
+                    </ListItem>
+                </Link>
+                <Link component={ RouterLink } color="inherit" to="/trash" style={{ textDecoration: 'none' }}>
+                    <ListItem key='Paper Bin' disablePadding>
+                        <ListItemButton>
+                        <ListItemIcon>
+                            <DeleteOutlineOutlinedIcon />
+                        </ListItemIcon>
+                        <ListItemText primary='Paper bin' />
+                        </ListItemButton>
+                    </ListItem>
+                </Link>
             </List>
         </Box>
     </Drawer>

@@ -8,7 +8,6 @@ import RestoreFromTrashOutlinedIcon from '@mui/icons-material/RestoreFromTrashOu
 
 import { updateNoteState } from '../../helpers/loadNotes';
 import { removeNote } from '../../store/note';
-import { green } from '@mui/material/colors';
 
 export const CardButtons = ({ note, index }) => {
 
@@ -65,9 +64,7 @@ export const CardButtons = ({ note, index }) => {
                 size='small' 
                 aria-label='delete note' 
                 color='error'
-                // display={ (stateToDisplay === 'DELETED') ? 'none' : '' }
                 sx={{ display: (stateToDisplay === 'DELETED') ? 'none' : '' }}
-                // visibility={ (stateToDisplay === 'DELETED') ? 'hidden' : '' }
                 onClick={ () => onClickButton( note._id, index, secondButtonState) }
             >
                 <DeleteOutlineOutlinedIcon />

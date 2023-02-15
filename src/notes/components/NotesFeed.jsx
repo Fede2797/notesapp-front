@@ -1,12 +1,11 @@
-import { useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Typography, Box, Card, CardActions, CardContent, Grid, Container, IconButton, TextareaAutosize } from '@mui/material';
+import { Typography, Box, Card, CardContent, Grid, Container, TextareaAutosize } from '@mui/material';
 import Masonry from '@mui/lab/Masonry';
 
 import { CardButtons } from './CardButtons';
-import { removeNote, setNote, setNotesInitialState } from '../../store/note';
-import { updateNote, updateNoteState } from '../../helpers/loadNotes';
+import { setNote, setNotesInitialState } from '../../store/note';
+import { updateNote } from '../../helpers/loadNotes';
 
 
 export const NotesFeed = () => {

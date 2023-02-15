@@ -19,21 +19,25 @@ export const noteSlice = createSlice({
             const { index, value, property } = action.payload;
             state.notes[ index ][ property ] = value;
         },
+        addNote: ( state, action ) => {
+            state.notes.unshift( action.payload );
+        },
         setNotesInitialState: ( state, action ) => {
             state.notesInitialState = action.payload;
         },
         removeNote: ( state, action ) => {
             const { index } = action.payload;
             state.notes.splice( index, 1 );
-        }
+        },
     }
 });
 
 
 export const { 
-    setNotes,
+    addNote,
+    removeNote,
     setNote,
+    setNotes,
     setNotesInitialState,
     setStateToDisplay,
-    removeNote,
 } = noteSlice.actions;

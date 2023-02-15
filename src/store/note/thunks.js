@@ -1,5 +1,5 @@
-import { loadNotes } from "../../helpers/loadNotes";
-import { setNotes } from "./noteSlice";
+import { loadNotes, postNote } from "../../helpers/loadNotes";
+import { addNote, setNotes } from "./noteSlice";
 
 export const startLoadingNotes = () => {
     return async ( dispatch, getState ) => {
@@ -10,5 +10,23 @@ export const startLoadingNotes = () => {
 
         const notes = await loadNotes( uid, state );
         dispatch( setNotes( notes ) );
+    }
+}
+
+export const postNewNote = ( title, description ) => {
+    return async ( dispatch, getState ) => {
+
+        console.log("a");
+        const { uid } = getState().auth;
+
+        const note = {
+            title,
+            description,
+            dateModify: Date.now(),
+            uid
+        }
+        const res = await postNote( note );
+
+        dispatch( addNote( res.note ) );
     }
 }

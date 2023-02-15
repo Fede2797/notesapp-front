@@ -1,75 +1,102 @@
-import { Typography, Box, Card, CardActions, CardContent, Grid, Container, IconButton } from '@mui/material';
+import { useCallback, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { Typography, Box, Card, CardActions, CardContent, Grid, Container, IconButton, TextareaAutosize } from '@mui/material';
 import Masonry from '@mui/lab/Masonry';
 
-import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
-import ArchiveOutlinedIcon from '@mui/icons-material/ArchiveOutlined';
+import { CardButtons } from './CardButtons';
+import { removeNote, setNote, setNotesInitialState } from '../../store/note';
+import { updateNote, updateNoteState } from '../../helpers/loadNotes';
 
 
-export const NotesFeed = ({ notes }) => {
-  return (
-    <Container sx={{ py: 3 }} maxWidth='xxl'>
-        <Grid container justifyContent='center'>
+export const NotesFeed = () => {
 
-        <Masonry
-        className='my-masonry-grid'
-        columns={{ xs: 1, sm: 2, md: 3, lg: 4, xl: 5 }}
-        spacing={2}
-        >
-            {
-                notes.map((note) => (
-                <Grid item key={note._id}>
-                    <Card 
-                        // variant='outlined'
-                        sx={{ ':hover': { boxShadow: 4 } }}
-                    >
-                    <CardContent>
-                        <Typography 
-                            gutterBottom 
-                            variant='h5' 
-                            component='h2'  
-                            style={{fontSize: 16, fontWeight: 500 }}
+    const { notes, notesInitialState } = useSelector( state => state.note );
+    const dispatch = useDispatch();
+
+    const handleFocus = () => {
+        dispatch(setNotesInitialState( notes ));
+    }
+
+    const onInputChange = ( event, index ) => {
+        const { name, value } = event.target;
+        dispatch( setNote({ index, value, property: name }) );
+    }
+
+    const handleBlur = ( note ) => {
+        if( notesInitialState != notes ){
+            updateNote( note );
+        }
+        dispatch(setNotesInitialState([]));
+    }
+
+    return (
+        <Container sx={{ py: 3 }} maxWidth='xxl'>
+            <Grid container justifyContent='center'>
+
+            <Masonry
+            className='my-masonry-grid'
+            columns={{ xs: 1, sm: 2, md: 3, lg: 4, xl: 5 }}
+            spacing={2}
+            >
+                {
+                    notes.map((note, index) => (
+                    <Grid item key={note._id}>
+                        <Card
+                            sx={{ ':hover': { boxShadow: 4 } }}
                         >
-                        {note.title}
-                        </Typography>
-                        <Typography
-                            style={{fontSize: 14 }}
-                        >
-                        {note.description}
-                        </Typography>
-                    </CardContent>
-                    <Box 
-                        justifyContent='space-between'
-                        display='flex'
-                    >
-                        <Box
+                        <CardContent>
+                            <TextareaAutosize 
+                                placeholder='Title'
+                                style={{ width: '100%', fontWeight: 500 }}
+                                minRows={1}
+                                variant='h5' 
+                                component='h2'
+                                name='title'
+                                value={note.title}
+                                onChange={ ( event ) => onInputChange( event, index ) }
+                                onFocus={ handleFocus }
+                                onBlur={ () => handleBlur( note ) }
+                            />
+
+                            {/* insert description */}
+                            <TextareaAutosize 
+                                placeholder='Add a new note'
+                                style={{ width: '100%', fontSize: 14 }}
+                                minRows={1}
+                                name='description'
+                                value={note.description}
+                                onChange={ ( event ) => onInputChange( event, index ) }
+                                onFocus={ handleFocus }
+                                onBlur={ () => handleBlur( note ) }
+                            />
+                        </CardContent>
+                        <Box 
+                            justifyContent='space-between'
                             display='flex'
-                            flexDirection='column'
-                            justifyContent='center'
-                            marginLeft='15px'
                         >
-                        <Typography 
-                            variant='caption'
-                            color='grey'
-                        >{ note.dateModify }</Typography>
+                            <Box
+                                display='flex'
+                                flexDirection='column'
+                                justifyContent='center'
+                                marginLeft='15px'
+                            >
+                            <Typography 
+                                variant='caption'
+                                color='grey'
+                            >{ note.dateModify }</Typography>
+                            </Box>
+
+                            <CardButtons note={ note } index={ index } />
+                            
                         </Box>
-                        <Box>
-                        <CardActions>
-                            <IconButton size='small' aria-label='delete note' color='warning '>
-                                <ArchiveOutlinedIcon />
-                            </IconButton>
-                            <IconButton size='small' aria-label='delete note' color='error'>
-                                <DeleteOutlineOutlinedIcon />
-                            </IconButton>
-                        </CardActions>
-                        </Box>
-                    </Box>
-                    </Card>
-                </Grid>
-                ))
-            }
-        </Masonry>
-        
-        </Grid>
-    </Container>
-  )
+                        </Card>
+                    </Grid>
+                    ))
+                }
+            </Masonry>
+
+            </Grid>
+        </Container>
+    )
 }

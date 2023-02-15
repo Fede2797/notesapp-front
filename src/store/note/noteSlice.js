@@ -5,6 +5,8 @@ export const noteSlice = createSlice({
     initialState: {
         notes: [],
         stateToDisplay: 'ACTIVE',
+        notesInitialState: [],
+        updateNeeded: false,
     },
     reducers: {
         setNotes: ( state, action ) => {
@@ -12,6 +14,17 @@ export const noteSlice = createSlice({
         },
         setStateToDisplay: ( state, action ) => {
             state.stateToDisplay = action.payload;
+        },
+        setNote: ( state, action ) => {
+            const { index, value, property } = action.payload;
+            state.notes[ index ][ property ] = value;
+        },
+        setNotesInitialState: ( state, action ) => {
+            state.notesInitialState = action.payload;
+        },
+        removeNote: ( state, action ) => {
+            const { index } = action.payload;
+            state.notes.splice( index, 1 );
         }
     }
 });
@@ -19,5 +32,8 @@ export const noteSlice = createSlice({
 
 export const { 
     setNotes,
-    setStateToDisplay
+    setNote,
+    setNotesInitialState,
+    setStateToDisplay,
+    removeNote,
 } = noteSlice.actions;

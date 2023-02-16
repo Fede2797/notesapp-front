@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 
-import { Alert, Box, Button, Card, CardActions, CardContent, Grid, IconButton, TextareaAutosize } from "@mui/material";
+import { Alert, Box, Button, Card, CardActions, CardContent, Fab, Grid, IconButton, TextareaAutosize } from "@mui/material";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 import { useForm } from "../../hooks";
 import { postNewNote } from "../../store/note";
+import AddIcon from '@mui/icons-material/Add';
 
 const formData = {
     title: '',
@@ -46,14 +47,15 @@ export const NewNote = () => {
         alignItems='center'
         marginTop='20px'
     >
-        <IconButton 
-            aria-label='new note' 
-            size='small' 
-            color='primary'
+
+        <Fab
+            sx={{position: 'fixed', bottom: 35, right: 35,}}
+            aria-label='Add' 
+            color="primary"
             onClick={ () => setDisplayNewNote( !displayNewNote ) }
         >
-            <AddCircleIcon sx={{ fontSize: 55 }} />
-        </IconButton>
+            <AddIcon />
+        </Fab>
 
         <Box
             width='500px'

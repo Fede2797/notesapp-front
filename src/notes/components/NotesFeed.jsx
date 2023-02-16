@@ -1,16 +1,17 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Typography, Box, Card, CardContent, Grid, Container, TextareaAutosize } from '@mui/material';
+import { Typography, Box, Card, CardContent, Grid, Container, TextareaAutosize, Fab } from '@mui/material';
 import Masonry from '@mui/lab/Masonry';
 
 import { CardButtons } from './CardButtons';
 import { setNote, setNotesInitialState } from '../../store/note';
 import { updateNote } from '../../helpers/loadNotes';
+import AddIcon from '@mui/icons-material/Add';
 
 
 export const NotesFeed = () => {
 
-    const { notes, notesInitialState } = useSelector( state => state.note );
+    const { notes, notesInitialState, stateToDisplay } = useSelector( state => state.note );
     const dispatch = useDispatch();
 
     const handleFocus = () => {
@@ -40,10 +41,13 @@ export const NotesFeed = () => {
             >
                 {
                     notes.map((note, index) => (
-                    <Grid item key={note._id}>
-                        <Card
-                            sx={{ ':hover': { boxShadow: 4 } }}
-                        >
+                    <Grid 
+                        item 
+                        key={note._id}
+                        // className="animate__animated animate__fadeIn animate__faster"
+                        className={ ( notes.includes(note) ) ? "animate__animated animate__fadeIn animate__faster" : "animate__animated animate__fadeOut" }
+                    >
+                        <Card sx={{ ':hover': { boxShadow: 4 } }} >
                         <CardContent>
                             <TextareaAutosize 
                                 placeholder='Title'
@@ -56,6 +60,7 @@ export const NotesFeed = () => {
                                 onChange={ ( event ) => onInputChange( event, index ) }
                                 onFocus={ handleFocus }
                                 onBlur={ () => handleBlur( note ) }
+                                disabled={ !!( stateToDisplay === 'DELETED' ) }
                             />
 
                             {/* insert description */}
@@ -68,6 +73,7 @@ export const NotesFeed = () => {
                                 onChange={ ( event ) => onInputChange( event, index ) }
                                 onFocus={ handleFocus }
                                 onBlur={ () => handleBlur( note ) }
+                                disabled={ !!( stateToDisplay === 'DELETED' ) }
                             />
                         </CardContent>
                         <Box 

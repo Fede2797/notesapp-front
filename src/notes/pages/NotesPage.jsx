@@ -4,6 +4,7 @@ import { useSetNotesPage } from '../../hooks/useSetNotesPage';
 import { NewNote, NotesFeed } from '../components'
 import { NotesLayout } from '../layout/NotesLayout';
 
+
 export const NotesPage = () => {
 
     useSetNotesPage('ACTIVE');

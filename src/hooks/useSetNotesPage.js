@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setStateToDisplay, startLoadingNotes } from "../store/note";
+import { setIsLoadingNotes, setStateToDisplay, startLoadingNotes } from "../store/note";
 
 export const useSetNotesPage = ( state ) => {
     const { stateToDisplay } = useSelector( state => state.note );
@@ -9,5 +9,6 @@ export const useSetNotesPage = ( state ) => {
     useEffect( () => { 
         dispatch( setStateToDisplay( state ));
         dispatch( startLoadingNotes() );
+        dispatch( setIsLoadingNotes( true ) );
     }, [ stateToDisplay ] );
 }

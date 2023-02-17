@@ -1,12 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Typography, Box, Card, CardContent, Grid, Container, TextareaAutosize, Fab } from '@mui/material';
+import { Typography, Box, Card, CardContent, Grid, Container, TextareaAutosize } from '@mui/material';
 import Masonry from '@mui/lab/Masonry';
 
 import { CardButtons } from './CardButtons';
 import { setNote, setNotesInitialState } from '../../store/note';
 import { updateNote } from '../../helpers/loadNotes';
-import AddIcon from '@mui/icons-material/Add';
 
 
 export const NotesFeed = () => {

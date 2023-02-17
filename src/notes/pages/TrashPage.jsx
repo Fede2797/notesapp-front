@@ -4,14 +4,15 @@ import { NotesFeed } from '../components'
 import { NotesLayout } from '../layout/NotesLayout';
 import { useSelector } from 'react-redux';
 import { useSetNotesPage } from '../../hooks/useSetNotesPage';
+import { LoadingNotes } from '../../ui/components/LoadingNotes';
 
 export const TrashPage = () => {
 
     const { notes } = useSelector( state => state.note );
+    const { isLoadingNotes } = useSelector( state => state.note );
+
     useSetNotesPage('DELETED');
     
-
-
     return (
         <NotesLayout>
             <Box justifyContent='center' width='100vw'>
@@ -28,7 +29,11 @@ export const TrashPage = () => {
                     </Alert>
                 </Grid>
 
-                <NotesFeed notes={ notes } />
+                {
+                    isLoadingNotes 
+                        ? <LoadingNotes />
+                        : <NotesFeed notes={ notes } />
+                }
 
             </Box>
         </NotesLayout>

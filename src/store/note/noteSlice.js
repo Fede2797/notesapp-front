@@ -7,6 +7,8 @@ export const noteSlice = createSlice({
         stateToDisplay: 'ACTIVE',
         notesInitialState: [],
         updateNeeded: false,
+        searchText: '',
+        isLoadingNotes: false,
     },
     reducers: {
         setNotes: ( state, action ) => {
@@ -29,6 +31,12 @@ export const noteSlice = createSlice({
             const { index } = action.payload;
             state.notes.splice( index, 1 );
         },
+        setSearchText: ( state, action ) => {
+            state.searchText = action.payload;
+        },
+        setIsLoadingNotes: ( state, action ) => {
+            state.isLoadingNotes = action.payload;
+        },
     }
 });
 
@@ -40,4 +48,6 @@ export const {
     setNotes,
     setNotesInitialState,
     setStateToDisplay,
+    setSearchText,
+    setIsLoadingNotes,
 } = noteSlice.actions;

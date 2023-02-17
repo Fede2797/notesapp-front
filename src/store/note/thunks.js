@@ -1,5 +1,5 @@
-import { loadNotes, postNote } from "../../helpers/loadNotes";
-import { addNote, setNotes } from "./noteSlice";
+import { loadNotes, loadNotesBySearch, postNote } from "../../helpers/loadNotes";
+import { addNote, setIsLoadingNotes, setNotes } from "./noteSlice";
 
 export const startLoadingNotes = () => {
     return async ( dispatch, getState ) => {
@@ -10,13 +10,13 @@ export const startLoadingNotes = () => {
 
         const notes = await loadNotes( uid, state );
         dispatch( setNotes( notes ) );
+        dispatch( setIsLoadingNotes( false ) );
     }
 }
 
 export const postNewNote = ( title, description ) => {
     return async ( dispatch, getState ) => {
 
-        console.log("a");
         const { uid } = getState().auth;
 
         const note = {
@@ -28,5 +28,18 @@ export const postNewNote = ( title, description ) => {
         const res = await postNote( note );
 
         dispatch( addNote( res.note ) );
+    }
+}
+
+export const getNotesBySearch = ( searchText ) => {
+    return async ( dispatch, getState ) => {
+
+        const { uid } = getState().auth;
+        const { stateToDisplay: state } = getState().note;
+
+        const notes = await loadNotesBySearch( uid, state, searchText );
+
+        dispatch( setNotes( notes ) );
+        dispatch( setIsLoadingNotes( false ) );
     }
 }

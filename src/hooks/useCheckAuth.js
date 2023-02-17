@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FirebaseAuth } from "../firebase/config";
 import { login, logout } from "../store/auth";
-import { startLoadingNotes } from '../store/note';
+import { setIsLoadingNotes, startLoadingNotes } from '../store/note';
 
 export const useCheckAuth = () => {
 
@@ -19,6 +19,7 @@ export const useCheckAuth = () => {
             dispatch( login({ uid, email, displayName, photoURL }) );
             // TODO: startLoadingNotes from NotesApp
             dispatch( startLoadingNotes() );
+            dispatch( setIsLoadingNotes( true ) );
         });
     
     }, []);

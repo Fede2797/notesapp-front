@@ -39,16 +39,29 @@ export const SearchBar = () => {
       }, [searchText])
 
   return (
+    // <Box
+    //     display='flex'
+    //     justifyContent='center'
+    //     sx={{ pl: 7.5 }}
+    //     width='100%'
+    // >
     <Box
         display='flex'
-        justifyContent='center'
-        sx={{ pl: 7.5 }}
+        justifyContent='left'
+        paddingLeft='280px'
         width='100%'
     >
+    
         <Paper
             component='form'
             onSubmit={ handleSearch }
-            sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: '50%' , height: 40 }}
+            sx={{ p: '2px 4px',
+                display: 'flex',
+                alignItems: 'center',
+                width: '50%' ,
+                height: 40,
+                maxWidth: 800
+            }}
         >
             <InputBase
                 sx={{ ml: 1, flex: 1 }}

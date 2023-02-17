@@ -42,7 +42,6 @@ export const updateNote = async ({ _id, title, description }) => {
     });
 
     const response = await res.json();
-    console.log(response);
     // return notes;
 }
 
@@ -63,7 +62,6 @@ export const updateNoteState = async ({ _id, state }) => {
     });
 
     const response = await res.json();
-    console.log(response);
 }
 
 export const postNote = async ( note ) => {

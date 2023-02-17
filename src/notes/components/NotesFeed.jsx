@@ -1,11 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Typography, Box, Card, CardContent, Grid, Container, TextareaAutosize } from '@mui/material';
+import { Typography, Box, Card, CardContent, Grid, Container, TextareaAutosize, Tooltip } from '@mui/material';
 import Masonry from '@mui/lab/Masonry';
 
 import { CardButtons } from './CardButtons';
 import { setNote, setNotesInitialState } from '../../store/note';
 import { updateNote } from '../../helpers/loadNotes';
+import { CustomTooltip } from './CustomTooltip';
 
 
 export const NotesFeed = () => {
@@ -27,6 +28,12 @@ export const NotesFeed = () => {
             updateNote( note );
         }
         dispatch(setNotesInitialState([]));
+    }
+
+    const formatDate = ( date, style ) => {
+        const unixDate = new Date(date);
+        date = unixDate.toLocaleString('en-AR', style); 
+        return date;
     }
 
     return (
@@ -85,10 +92,13 @@ export const NotesFeed = () => {
                                 justifyContent='center'
                                 marginLeft='15px'
                             >
-                            <Typography 
-                                variant='caption'
-                                color='grey'
-                            >{ note.dateModify }</Typography>
+                            <CustomTooltip title={formatDate(note.dateModify, {dateStyle: "long", timeStyle: "medium"})}>
+                                <Typography 
+                                    variant='caption'
+                                    color='grey'
+                                    
+                                >{ formatDate(note.dateModify, {dateStyle: "medium"}) }</Typography>
+                            </CustomTooltip>
                             </Box>
 
                             <CardButtons note={ note } index={ index } />

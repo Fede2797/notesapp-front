@@ -18,6 +18,8 @@ export const postNewNote = ( title, description ) => {
     return async ( dispatch, getState ) => {
 
         const { uid } = getState().auth;
+        
+        console.log(Date.now());
 
         const note = {
             title,

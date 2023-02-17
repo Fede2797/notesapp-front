@@ -5,6 +5,8 @@ import LogoutOutlined from '@mui/icons-material/LogoutOutlined';
 import DescriptionIcon from '@mui/icons-material/Description';
 import { SearchBar } from './SearchBar';
 import { startLogout } from '../../store/auth';
+import { CustomTooltip } from './CustomTooltip';
+import { Link } from 'react-router-dom';
 
 export const NavBar = () => {
 
@@ -17,21 +19,27 @@ export const NavBar = () => {
     return (
         <AppBar position='fixed' sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
             <Toolbar>
+
                 <DescriptionIcon sx={{ mr: 1 }} />
                 <Box>
-                    <Typography variant='h6' color='inherit' noWrap>
-                        NotesApp
-                    </Typography>
+                    <Link to="/" style={{textDecoration: 'none', color: 'inherit'}}>
+                        <Typography variant='h6' color='inherit' noWrap>
+                            NotesApp
+                        </Typography>
+                    </Link>
                 </Box>
                 
                 <SearchBar />
 
+                <CustomTooltip title='Log out'>
                 <IconButton 
                     color='stockWhite'
                     onClick={ onLogout }
                 >
                     <LogoutOutlined />
                 </IconButton>
+                </CustomTooltip>
+
             </Toolbar>
         </AppBar>
     )

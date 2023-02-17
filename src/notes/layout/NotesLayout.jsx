@@ -3,7 +3,7 @@ import { NavBar, SideBar } from '../components';
 
 export const NotesLayout = ({ children }) => {
 
-    const drawerSize = 240;
+    const drawerSize = 280;
 
     return (
     <Box sx={{ display: 'flex' }}>

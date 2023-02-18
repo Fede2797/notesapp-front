@@ -11,7 +11,7 @@ import { CustomTooltip } from './CustomTooltip';
 
 export const NotesFeed = () => {
 
-    const { notes, notesInitialState, stateToDisplay } = useSelector( state => state.note );
+    const { notes, notesInitialState, stateToDisplay, focusedNote } = useSelector( state => state.note );
     const dispatch = useDispatch();
 
     const handleFocus = () => {
@@ -53,7 +53,10 @@ export const NotesFeed = () => {
                         // className="animate__animated animate__fadeIn animate__faster"
                         className={ ( notes.includes(note) ) ? "animate__animated animate__fadeIn animate__faster" : "animate__animated animate__fadeOut" }
                     >
-                        <Card sx={{ ':hover': { boxShadow: 4 } }} >
+                        <Card 
+                            sx={{ ':hover': { boxShadow: 4 } }}
+                            variant="outlined"
+                        >
                         <CardContent>
                             <TextareaAutosize 
                                 placeholder='Title'
@@ -69,6 +72,9 @@ export const NotesFeed = () => {
                                 disabled={ !!( stateToDisplay === 'DELETED' ) }
                             />
 
+                            {/* <textarea
+
+                            /> */}
                             {/* insert description */}
                             <TextareaAutosize 
                                 placeholder='Add a new note'

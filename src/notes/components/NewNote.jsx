@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 
-import { Alert, Box, Button, Card, CardActions, CardContent, Fab, Grid, IconButton, TextareaAutosize } from "@mui/material";
-import AddCircleIcon from '@mui/icons-material/AddCircle';
+import { Alert, Box, Button, Card, CardActions, CardContent, Fab, Grid, TextareaAutosize } from "@mui/material";
 
 import { useForm } from "../../hooks";
 import { postNewNote } from "../../store/note";
 import AddIcon from '@mui/icons-material/Add';
+import { CustomTooltip } from "./CustomTooltip";
 
 const formData = {
     title: '',
@@ -48,6 +48,7 @@ export const NewNote = () => {
         marginTop='20px'
     >
 
+        <CustomTooltip title="New note" >
         <Fab
             sx={{position: 'fixed', bottom: 35, right: 35,}}
             aria-label='Add' 
@@ -56,12 +57,16 @@ export const NewNote = () => {
         >
             <AddIcon />
         </Fab>
+        </CustomTooltip>
 
         <Box
             width='500px'
             display={ displayNewNote ? '' : 'none' }
         >
-            <Card sx={{ ':hover': { boxShadow: 4 } }}>
+            <Card sx={{ ':hover': { boxShadow: 4 } }}
+                className={ "animate__animated animate__fadeIn animate__faster" }
+                variant="outlined"
+            >
             <CardContent style={{ paddingBottom: 0 }}>
                 <TextareaAutosize 
                     placeholder='Title'

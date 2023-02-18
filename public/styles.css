@@ -12,11 +12,13 @@ textarea:focus {
     outline: none !important;
 }
 
-/* h2 {
-    font-size: 16px !important;
-    font-weight: 500 !important;
+.MuiTooltip-tooltip {
+    margin-top: 0px !important;
+}
+/* .MuiPaper-root {
+    background-color: rgb(240, 240, 240) !important;
 } */
 
-h2:focus {
+/* h2:focus {
     outline: none !important;
-}
+} */

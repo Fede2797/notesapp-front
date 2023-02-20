@@ -5,7 +5,7 @@ export const noteSlice = createSlice({
     initialState: {
         notes: [],
         stateToDisplay: 'ACTIVE',
-        notesInitialState: [],
+        noteInitialState: {title: '', description: ''},
         updateNeeded: false,
         searchText: '',
         isLoadingNotes: false,
@@ -24,8 +24,8 @@ export const noteSlice = createSlice({
         addNote: ( state, action ) => {
             state.notes.unshift( action.payload );
         },
-        setNotesInitialState: ( state, action ) => {
-            state.notesInitialState = action.payload;
+        setNoteInitialState: ( state, action ) => {
+            state.noteInitialState = action.payload;
         },
         removeNote: ( state, action ) => {
             const { index } = action.payload;
@@ -46,7 +46,7 @@ export const {
     removeNote,
     setNote,
     setNotes,
-    setNotesInitialState,
+    setNoteInitialState,
     setStateToDisplay,
     setSearchText,
     setIsLoadingNotes,

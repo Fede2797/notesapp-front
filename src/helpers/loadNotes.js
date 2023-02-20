@@ -26,6 +26,7 @@ export const loadNotesBySearch = async ( uid = '', state = '', searchText = '' )
 }
 
 export const updateNote = async ({ _id, title, description }) => {
+
     const url = "http://localhost:3000/api/notes/" + _id;
 
     const date = new Date();

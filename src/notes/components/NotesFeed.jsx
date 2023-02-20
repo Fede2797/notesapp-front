@@ -1,33 +1,32 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Typography, Box, Card, CardContent, Grid, Container, TextareaAutosize, Tooltip } from '@mui/material';
+import { Typography, Box, Card, CardContent, Grid, Container, 
+    // TextareaAutosize, 
+    Tooltip } from '@mui/material';
 import Masonry from '@mui/lab/Masonry';
 
 import { CardButtons } from './CardButtons';
-import { setNote, setNotesInitialState } from '../../store/note';
+import { setNote, setNoteInitialState } from '../../store/note';
 import { updateNote } from '../../helpers/loadNotes';
 import { CustomTooltip } from './CustomTooltip';
-
+import { useForm } from '../../hooks/useForm';
+import TextareaAutosize from 'react-textarea-autosize';
 
 export const NotesFeed = () => {
 
-    const { notes, notesInitialState, stateToDisplay, focusedNote } = useSelector( state => state.note );
+    const { notes, noteInitialState, stateToDisplay } = useSelector( state => state.note );
+
     const dispatch = useDispatch();
 
-    const handleFocus = () => {
-        dispatch(setNotesInitialState( notes ));
-    }
-
-    const onInputChange = ( event, index ) => {
-        const { name, value } = event.target;
-        dispatch( setNote({ index, value, property: name }) );
+    const handleFocus = ( note ) => {
+        dispatch(setNoteInitialState( note ));
     }
 
     const handleBlur = ( note ) => {
-        if( notesInitialState != notes ){
+        if( noteInitialState.title !== note.title || noteInitialState.description !== note.description ){
             updateNote( note );
         }
-        dispatch(setNotesInitialState([]));
+        dispatch(setNoteInitialState({title: '', description: ''}));
     }
 
     const formatDate = ( date, style ) => {
@@ -50,7 +49,6 @@ export const NotesFeed = () => {
                     <Grid 
                         item 
                         key={note._id}
-                        // className="animate__animated animate__fadeIn animate__faster"
                         className={ ( notes.includes(note) ) ? "animate__animated animate__fadeIn animate__faster" : "animate__animated animate__fadeOut" }
                     >
                         <Card 
@@ -59,32 +57,24 @@ export const NotesFeed = () => {
                         >
                         <CardContent>
                             <TextareaAutosize 
-                                placeholder='Title'
                                 style={{ width: '100%', fontWeight: 500 }}
                                 minRows={1}
                                 variant='h5' 
                                 component='h2'
                                 name='title'
-                                value={note.title}
-                                onChange={ ( event ) => onInputChange( event, index ) }
-                                onFocus={ handleFocus }
-                                onBlur={ () => handleBlur( note ) }
+                                defaultValue={note.title}
+                                onFocus={ () => handleFocus( note ) }
+                                onBlur={ ( event ) => handleBlur({ _id: note._id, title: event.target.value , description: note.description }) }
                                 disabled={ !!( stateToDisplay === 'DELETED' ) }
                             />
 
-                            {/* <textarea
-
-                            /> */}
-                            {/* insert description */}
                             <TextareaAutosize 
-                                placeholder='Add a new note'
                                 style={{ width: '100%', fontSize: 14 }}
                                 minRows={1}
                                 name='description'
-                                value={note.description}
-                                onChange={ ( event ) => onInputChange( event, index ) }
-                                onFocus={ handleFocus }
-                                onBlur={ () => handleBlur( note ) }
+                                defaultValue={note.description}
+                                onFocus={ () => handleFocus( note ) }
+                                onBlur={ ( event ) => handleBlur({ _id: note._id, title: note.title , description: event.target.value }) }
                                 disabled={ !!( stateToDisplay === 'DELETED' ) }
                             />
                         </CardContent>

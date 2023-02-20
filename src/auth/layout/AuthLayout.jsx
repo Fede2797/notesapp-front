@@ -1,4 +1,4 @@
-import { Grid, Typography } from "@mui/material"
+import { Box, Grid, Typography } from "@mui/material"
 
 export const AuthLayout = ({ children, title = '' }) => {
   return (
@@ -10,6 +10,16 @@ export const AuthLayout = ({ children, title = '' }) => {
       justifyContent="center"
       sx={{ minHeight: '100vh', backgroundColor: 'primary.main', padding: 4 }}
     >
+      <Box marginBottom={4}>
+        <Typography 
+          color="white"
+          variant="h1"
+          fontSize={60}
+          fontWeight={500}
+        >
+          NotesApp
+        </Typography>
+      </Box>
 
       <Grid item
         className="box-shadow"

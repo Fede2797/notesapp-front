@@ -3,7 +3,7 @@ export const loadNotes = async ( uid = '', state = '' ) => {
     if (!uid) throw new Error('You must provide the uid');
     if (!state) throw new Error('You must provide the state');
 
-    const url = "http://localhost:3000/api/notes/" + "?" + new URLSearchParams({ state, uid });
+    const url = import.meta.env.VITE_BACK_URL + "?" + new URLSearchParams({ state, uid });
     const response = await fetch(url);
 
     const notes = await response.json();
@@ -14,7 +14,7 @@ export const loadNotesBySearch = async ( uid = '', state = '', searchText = '' )
     if (!uid) throw new Error('You must provide the uid');
     if (!state) throw new Error('You must provide the state');
 
-    const url = "http://localhost:3000/api/notes/" 
+    const url = import.meta.env.VITE_BACK_URL 
                     + searchText 
                     + "?" 
                     + new URLSearchParams({ state, uid });
@@ -27,7 +27,7 @@ export const loadNotesBySearch = async ( uid = '', state = '', searchText = '' )
 
 export const updateNote = async ({ _id, title, description }) => {
 
-    const url = "http://localhost:3000/api/notes/" + _id;
+    const url = import.meta.env.VITE_BACK_URL + _id;
 
     const date = new Date();
     const data = {
@@ -47,7 +47,7 @@ export const updateNote = async ({ _id, title, description }) => {
 }
 
 export const updateNoteState = async ({ _id, state }) => {
-    const url = "http://localhost:3000/api/notes/" + _id;
+    const url = import.meta.env.VITE_BACK_URL + _id;
 
     const date = new Date();
     const data = {
@@ -66,7 +66,7 @@ export const updateNoteState = async ({ _id, state }) => {
 }
 
 export const postNote = async ( note ) => {
-    const url = "http://localhost:3000/api/notes/";
+    const url = import.meta.env.VITE_BACK_URL;
 
     console.log({note});
     const res = await fetch( url, {

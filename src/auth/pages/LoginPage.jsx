@@ -44,9 +44,9 @@ export const LoginPage = () => {
         <Grid container>
           <Grid item xs={ 12 } sx={{ mt: 2 }}>
               <TextField 
-                label="Correo" 
+                label="Email" 
                 type="email"
-                placeholder="correo@google.com" 
+                placeholder="email@gmail.com" 
                 fullWidth
                 name="email"
                 value={ email }
@@ -56,9 +56,9 @@ export const LoginPage = () => {
 
           <Grid item xs={ 12 } sx={{ mt: 2 }}>
             <TextField 
-              label="Contraseña" 
+              label="Password" 
               type="password"
-              placeholder="Contraseña" 
+              placeholder="Password" 
               fullWidth
               name="password"
               value={ password }
@@ -118,7 +118,7 @@ export const LoginPage = () => {
 
           <Grid container direction="row" justifyContent="end">
             <Link component={ RouterLink } color="inherit" to="/auth/register">
-              Crear una cuenta
+              New account
             </Link>
             
           </Grid>

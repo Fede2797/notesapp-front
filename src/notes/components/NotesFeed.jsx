@@ -53,7 +53,7 @@ export const NotesFeed = () => {
                     >
                         <Card 
                             sx={{ ':hover': { boxShadow: 4 } }}
-                            variant="outlined"
+                            // variant="outlined"
                         >
                         <CardContent>
                             <TextareaAutosize 

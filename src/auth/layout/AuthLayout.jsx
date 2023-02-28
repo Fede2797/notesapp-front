@@ -8,11 +8,13 @@ export const AuthLayout = ({ children, title = '' }) => {
       direction="column"
       alignItems="center"
       justifyContent="center"
-      sx={{ minHeight: '100vh', backgroundColor: 'primary.main', padding: 4 }}
+      sx={{ minHeight: '100vh', 
+      // backgroundColor: 'primary.main', 
+      padding: 4 }}
     >
       <Box marginBottom={4}>
         <Typography 
-          color="white"
+          // color="white"
           variant="h1"
           fontSize={60}
           fontWeight={500}
@@ -26,7 +28,9 @@ export const AuthLayout = ({ children, title = '' }) => {
         xs={ 3 }
         sx={{ 
             width: { sm: 450 },
-            backgroundColor: 'white', 
+            // backgroundColor: 'primary.main', 
+            // backgroundColor: '#272727', 
+            backgroundColor: '#1e1e1e',
             padding: 3, 
             borderRadius: 2 
         }}>

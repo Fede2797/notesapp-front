@@ -9,6 +9,7 @@ export const noteSlice = createSlice({
         updateNeeded: false,
         searchText: '',
         isLoadingNotes: false,
+        isSidebarOpen: true,
     },
     reducers: {
         setNotes: ( state, action ) => {
@@ -37,6 +38,9 @@ export const noteSlice = createSlice({
         setIsLoadingNotes: ( state, action ) => {
             state.isLoadingNotes = action.payload;
         },
+        toggleIsSidebarOpen: ( state ) => {
+            state.isSidebarOpen = !state.isSidebarOpen;
+        }
     }
 });
 
@@ -50,4 +54,5 @@ export const {
     setStateToDisplay,
     setSearchText,
     setIsLoadingNotes,
+    toggleIsSidebarOpen,
 } = noteSlice.actions;

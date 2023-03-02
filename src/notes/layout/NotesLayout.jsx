@@ -1,5 +1,6 @@
 import { Box, CssBaseline } from '@mui/material';
 import { NavBar, SideBar } from '../components';
+import SideBarTest from '../components/SideBarTest';
 
 export const NotesLayout = ({ children }) => {
 
@@ -11,7 +12,8 @@ export const NotesLayout = ({ children }) => {
 
         <NavBar />
 
-        <SideBar drawerSize={ drawerSize } />
+        {/* <SideBar drawerSize={ drawerSize } /> */}
+        <SideBarTest />
 
         { children }
 

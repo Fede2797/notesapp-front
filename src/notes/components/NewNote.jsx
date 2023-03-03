@@ -30,12 +30,19 @@ export const NewNote = () => {
     const handleSubmit = () => {
         setFormSubmitted( true );
         if ( isFormValid ){
-
             dispatch(postNewNote( title, description ));
             onResetForm();
             setFormSubmitted( false );
             setDisplayNewNote( false );
         }
+    }
+
+    const handleNewNote = () =>{
+        window.scrollTo({
+            top: 0, 
+            behavior: 'smooth'
+          });
+        setDisplayNewNote( !displayNewNote );
     }
 
   return (
@@ -53,7 +60,7 @@ export const NewNote = () => {
             sx={{position: 'fixed', bottom: 35, right: 35,}}
             aria-label='Add' 
             color="primary"
-            onClick={ () => setDisplayNewNote( !displayNewNote ) }
+            onClick={ () => handleNewNote() }
         >
             <AddIcon />
         </Fab>

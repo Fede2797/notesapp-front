@@ -1,15 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+const initialNote = {title: '', description: ''};
+
 export const noteSlice = createSlice({
     name: 'note',
     initialState: {
         notes: [],
         stateToDisplay: 'ACTIVE',
-        noteInitialState: {title: '', description: ''},
+        noteInitialState: initialNote,
         updateNeeded: false,
         searchText: '',
         isLoadingNotes: false,
-        isSidebarOpen: true,
+        isSidebarOpen: false,
+        screenWidth: 0,
     },
     reducers: {
         setNotes: ( state, action ) => {
@@ -38,6 +41,9 @@ export const noteSlice = createSlice({
         setIsLoadingNotes: ( state, action ) => {
             state.isLoadingNotes = action.payload;
         },
+        setScreenWidth: ( state, { payload } ) => {
+            state.screenWidth = payload;
+        },
         toggleIsSidebarOpen: ( state ) => {
             state.isSidebarOpen = !state.isSidebarOpen;
         }
@@ -51,6 +57,7 @@ export const {
     setNote,
     setNotes,
     setNoteInitialState,
+    setScreenWidth,
     setStateToDisplay,
     setSearchText,
     setIsLoadingNotes,

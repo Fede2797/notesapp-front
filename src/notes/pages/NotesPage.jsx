@@ -1,4 +1,4 @@
-import { Box, CircularProgress, Grid, Toolbar } from '@mui/material';
+import { Box, Toolbar } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { useSetNotesPage } from '../../hooks/useSetNotesPage';
 import { LoadingNotes } from '../../ui/components/LoadingNotes';

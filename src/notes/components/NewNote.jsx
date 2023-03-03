@@ -60,7 +60,8 @@ export const NewNote = () => {
         </CustomTooltip>
 
         <Box
-            width='500px'
+            // width='500px'
+            width={{ xs:'280px', sm:'350px', md:'400px', lg:'500px'}}
             display={ displayNewNote ? '' : 'none' }
         >
             <Card sx={{ ':hover': { boxShadow: 4 } }}

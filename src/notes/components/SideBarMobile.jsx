@@ -19,7 +19,7 @@ import ArchiveOutlinedIcon from '@mui/icons-material/ArchiveOutlined';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleIsSidebarOpen } from '../../store/note';
 
-export default function SideBarTest() {
+export default function SideBarMobile() {
 //   const [state, setState] = React.useState({ left: false });
 
   const dispatch = useDispatch();

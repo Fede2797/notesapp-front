@@ -1,8 +1,12 @@
 import { Box, CssBaseline } from '@mui/material';
+import { useSelector } from 'react-redux';
 import { NavBar, SideBar } from '../components';
-import SideBarTest from '../components/SideBarTest';
+import SideBarMobile from '../components/SideBarMobile';
 
 export const NotesLayout = ({ children }) => {
+
+    const { screenWidth } = useSelector( state => state.note );
+    const mobileScreen = ( screenWidth <= 768 );
 
     const drawerSize = 280;
 
@@ -13,7 +17,12 @@ export const NotesLayout = ({ children }) => {
         <NavBar />
 
         {/* <SideBar drawerSize={ drawerSize } /> */}
-        <SideBarTest />
+        {
+            mobileScreen 
+                ? <SideBarMobile />
+                : <SideBar drawerSize={ drawerSize } />
+        }
+        
 
         { children }
 

@@ -22,7 +22,7 @@ export const TrashPage = () => {
                     item 
                     xs={ 12 }
                     sx={{ margin: 3, marginBottom: 1 }}
-                    width={ 350 }
+                    width={ 300 }
                 >
                     <Alert severity='warning' variant="outlined" >
                         Trash notes are deleted after 72hs.

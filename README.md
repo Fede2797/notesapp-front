@@ -1,4 +1,4 @@
-# NotesApp - Notes website
+# NotesApp
 
 This is A simple web application that allows you to create and store notes, and edit them later.
 
